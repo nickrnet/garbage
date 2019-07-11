@@ -9,6 +9,12 @@ import Card from './Card.js';
 class Suit {
     constructor (properties) {
         try {
+            this.validSuits = [
+                "clubs",
+                "diamonds",
+                "hearts",
+                "spades"
+            ]
             // TODO: Improve this `properties` sanity check.
             if (!properties) {
                 properties = {};
@@ -20,12 +26,46 @@ class Suit {
             if (!this.name) {
                 throw `Invalid name for suit specified: ${this.name}`;
             }
+            if (!this.validSuits.includes(this.name)) {
+                throw `Invalid suit specified: ${this.name}`;
+            }
+        
             if (!this.cards || this.cards.length !== 13) {
                 this.cards = [];
-                // [{name: 'Ace', value: 1}, {name: '2', value: 2}, {name: '3', value: 3}, {name: '4', value: 4}, {name: '5', value: 5}, {name: '6', value: 6}, {name: '7', value: 7}, {name: '8', value: 8}, {name: '9', value: 9}, {name: '10', value: 10}, {name: 'Jack', value: 11}, {name: 'Queen', value: 12}, {name: 'King', value: 13}]
                 for (i = 1; i <= 13; i++) {
                     this.cards.push(new Card({suit: this.name, value: i}));
                 }
+                // this.cards = [{
+                //      suit: 'clubs',
+                //      name: 'Ace',
+                //      value: 1
+                //  }, {
+                //      suit: 'clubs',
+                //      name: '2',
+                //      value: 2
+                //  }, {
+                //      suit: 'clubs',
+                //      name: '3',
+                //      value: 3
+                //  },
+                //      ...
+                //  {
+                //      suit: 'clubs',
+                //      name: '10',
+                //      value: 10
+                //  }, {
+                //      suit: 'clubs',
+                //      name: 'Jack',
+                //      value: 11
+                //  }, {
+                //      suit: 'clubs',
+                //      name: 'Queen',
+                //      value: 12
+                //  }, {
+                //      suit: 'clubs',
+                //      name: 'King',
+                //      value: 13
+                // }]
             }
         } catch (err) {
             // console.error(err, properties);
