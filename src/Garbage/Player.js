@@ -1,5 +1,3 @@
-import Deck from './Deck.js';
-import Discard from './Discard.js';
 /**
  * A player object.
  * @class Player
@@ -7,7 +5,7 @@ import Discard from './Discard.js';
  * @property name {string} the name of the player,
  * @property faceDownCards {array} the player's face down cards,
  * @property faceUpCards {array} the player's face up cards,
- * @property slots {array} the player's slots,
+ * @property slots {number} the player's slots to flip,
  * @property card {card} the player's current card.
  */
 class Player {
@@ -22,13 +20,13 @@ class Player {
             this.name = properties.name || "";
             this.faceDownCards = properties.faceDownCards || [];
             this.faceUpCards = properties.faceUpCards || [];
-            this.slots = properties.slots || [];
+            this.slots = properties.slots || 10;
 
             if (!this.name) {
                 throw `Invalid name for player specified: ${this.name}`;
             }
             if (!this.slots) {
-                this.slots = [];
+                this.slots = 10;
             }
         } catch (err) {
             // console.error(err, properties);
@@ -36,27 +34,42 @@ class Player {
         }
     }
 
-    drawFromDeck = () => {
-        this.card = Deck.draw();
+    /**
+     * Draws a card from a deck and sets it as the Player's card.
+     * @param {deck} deck A Deck to draaw from.
+     */
+    drawFromDeck = (deck) => {
+        this.card = deck.draw();
     }
 
-    drawFromDiscard = () => {
-        this.card = Discard.draw();
+    /**
+     * Draws a card from the discard pile and sets it as the Player's card.
+     * @param {discard} discard A discard pile.
+     */
+    drawFromDiscard = (discard) => {
+        this.card = discard.draw();
     }
 
+    /**
+     * Places the player's card in the appropriate slot.
+     */
     placeCardInSlot = () => {
         // TODO: Handle Jacks, Queens and Kings: 11, 12, and 13
         if (this.faceDownCards.length <= this.card.value) {
             let slotCard = this.faceDownCards[this.card.value];
-            this.faceupCards.push(this.card);
+            this.faceUpCards.push(this.card);
             this.card = slotCard;
         } else {
             this.discardCard();
         }
     }
 
-    discardCard = () => {
-        Discard.place(this.card);
+    /**
+     * Discards the player's current card.
+     * @param {discard} discard A discard pile.
+     */
+    discardCard = (discard) => {
+        discard.place(this.card);
         this.card = null;
     }
 }

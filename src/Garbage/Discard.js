@@ -12,7 +12,7 @@ class Discard {
                 properties = {};
             }
             JSON.stringify(properties);
-            this.cards = properties.cards;
+            this.cards = properties.cards || [];
             
             if (!this.cards) {
                 this.cards = [];
@@ -28,16 +28,17 @@ class Discard {
      * @returns {Card}
      */
     draw = () => {
-        if (this.cards) {
+        // TODO: Add checks for Jacks, Queens, Kings on top.
+        if (this.cards && this.cards.length) {
             return this.cards.pop();
         } else {
-            console.error(`Tried to draw from discard when no cards available.`);
-            console.trace();
+            throw new Error(`Tried to draw from discard when no cards available.`);
         }
     }
 
     /**
      * Places a Card on the top of this discard.
+     * @param {card} card A card to place on top of the discard pile.
      * @returns {Card}
      */
     place = (card) => {
