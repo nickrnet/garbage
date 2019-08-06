@@ -39,7 +39,6 @@ class Card {
                 }
             }
         } catch (err) {
-            // console.error(err, properties);
             throw err;
         }
     }
