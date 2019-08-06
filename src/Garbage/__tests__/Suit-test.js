@@ -2,7 +2,7 @@
  * @format
  */
 
-import Suit from '../Suit.js';
+import Suit from '../game/Suit.js';
 
 describe('suit tests', () => {
   it('should have a name', () => {

@@ -2,7 +2,7 @@
  * @format
  */
 
-import Card from '../Card.js';
+import Card from '../game/Card';
 
 describe('card tests', () => {
   it('has a valid value', () => {

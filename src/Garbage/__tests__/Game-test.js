@@ -2,8 +2,8 @@
  * @format
  */
 
-import Game from '../Game';
-import Player from '../Player';
+import Game from '../game/Game';
+import Player from '../game/Player';
 
 let game;
 

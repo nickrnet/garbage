@@ -2,7 +2,7 @@
  * @format
  */
 
-import Deck from '../Deck';
+import Deck from '../game/Deck';
 
 describe('deck tests', () => {
   describe('deck properties', () => {

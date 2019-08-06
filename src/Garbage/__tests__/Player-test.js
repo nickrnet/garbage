@@ -2,9 +2,9 @@
  * @format
  */
 
-import Deck from '../Deck';
-import Discard from '../Discard';
-import Player from '../Player';
+import Deck from '../game/Deck';
+import Discard from '../game/Discard';
+import Player from '../game/Player';
 
 describe('player tests', () => {
   describe('player properties', () => {
